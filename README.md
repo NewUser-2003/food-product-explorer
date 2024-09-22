@@ -1,70 +1,172 @@
-# Getting Started with Create React App
+         *******************************************   Food Product Explorer   *********************************************
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+         
 
-## Available Scripts
+Food Product Explorer is a React web application that integrates with the OpenFoodFacts API to explore and search for food products. Users can search by category, product name, or barcode, view detailed information about food products, and manage a shopping cart.
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+-------FEATURES--------
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+ Homepage:
 
-### `npm test`
+  -Displays a list of food products fetched from the OpenFoodFacts API.
+  -Shows product name, image, category, ingredients (if available), and nutrition grade.
+  -Implements pagination (infinite scroll or load more functionality).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ Search Functionality:
 
-### `npm run build`
+  -A search bar filters products by name.
+  -Barcode search functionality allows users to find products using the barcode.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+ Category Filter:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  -A dropdown or sidebar filter lets users filter products by category (e.g., beverages, dairy, snacks).
+  -Categories are fetched dynamically from the OpenFoodFacts API.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+ Sort Functionality:
 
-### `npm run eject`
+   Allows sorting of the product list by:
+    -Product name (A-Z, Z-A).
+    -Nutrition grade (ascending/descending).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+ Product Detail Page:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   Shows the full details of the selected product, including:
+    -Product image.
+    -Full list of ingredients.
+    -Nutritional values (energy, fat, carbs, proteins).
+    -Labels (vegan, gluten-free).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+ Cart Functionality:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  -Users can add products to a cart and manage quantities.
+  -Items can be removed from the cart.
+  -The cart is available on a dedicated cart page.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
+---------TECHNOLOGIES USED---------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+ Frontend:
 
-### Analyzing the Bundle Size
+  -React.js (functional components, hooks).
+  -React Router for navigation.
+  -Tailwind CSS for styling and responsiveness.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+ Backend:
 
-### Making a Progressive Web App
+  -Integration with the OpenFoodFacts API to fetch product data.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+---------FOLDER STRUCTURE----------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+  .
+├── public
+│   ├── index.html
+│   └── ...
+├── src
+│   ├── components
+│   │   ├── Cart.js
+│   │   └── ...
+│   ├── context
+│   │   ├── CartContext.js
+│   │   └── ProductContext.js
+│   ├── pages
+│   │   ├── Home.js
+│   │   ├── ProductPage.js
+│   │   └── ...
+│   ├── utils
+│   │   └── api.js
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+├── package.json
+└── README.md
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+-------------   Steps Followed in Development   -------------
+
+1. React Project Setup
+
+  -Set up the project using Create React App.
+  -Organized the project structure with components, context, pages, and utils directories.
+
+2. Integrated the OpenFoodFacts API
+
+  -Used fetch API to retrieve product data from OpenFoodFacts in api.js.
+  -Created functions for:
+      -Fetching products by category.
+      -Searching products by name.
+      -Fetching product details by barcode.
+
+3. Context API for State Management
+
+  -Created a ProductContext for managing product state:
+      -Holds products and filters (category, search) in the state.
+      -setProducts and setFilters were used to update the state.
+
+  -Created a CartContext for managing cart state:
+      -Holds cart items and manages adding/removing products.
+      -addToCart increases product quantity if it's already in the cart, otherwise adds the product.
+      -removeFromCart removes items from the cart by barcode.
+
+4. Component Development
+
+  -Home Page:
+      -Displays a list of products.
+      -Allows filtering by category and searching by name.
+      -Fetches products using API calls and displays them dynamically.
+
+  -Product Page:
+      -Displays detailed information for a product using the barcode.
+      -Fetches data from the OpenFoodFacts API.
+
+  -Cart Component:
+      -Displays items in the cart with options to remove products.
+
+5. Routing with React Router
+
+  -Set up React Router to handle page navigation:
+      -Home page (/).
+      -Product detail page (/product/:barcode).
+      -Cart page (/cart).
+    
+6. State Management
+
+  -We created two contexts using React Context API:
+       -ProductContext: To manage the product list, search filters, and sort functionality.
+       -CartContext: To manage cart items, including adding and removing products from the cart.
+
+7. Styling with Tailwind CSS
+
+      -Added Tailwind CSS for fast and responsive styling.
+      -Ensured mobile-first design and responsiveness across various screen sizes.
+
+8. Error Handling
+
+  -Added error handling for network/API failures using try/catch in fetch functions.
+  -Provided user-friendly error messages if API calls fail.
+
+9. Debugging
+
+  -Resolved issues with fetching product data by barcode.
+  -Fixed state management issues, including ensuring setProducts was properly defined and used.
+  -Debugged React Router path issues to ensure correct navigation.
+
+
+
+
+-----------Time Taken-----------
+
+ Total Time Taken: ~7 hours
+
+   -Initial setup and folder structure: 1 hour.
+   -API integration and context setup: 3.5 hours.
+   -UI/UX implementation and styling: 1 hour.
+   -Testing, debugging, and final touches: 1.5 hour.
